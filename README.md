@@ -88,3 +88,5 @@ To check the linting:
 ```
 $ rubocop
 ```
+
+![alt text](http://url/to/img.png)
