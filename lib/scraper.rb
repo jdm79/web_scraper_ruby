@@ -14,6 +14,8 @@ class ConcertScraper
   end
 
   def url_scraper
+    loading
+
     url = 'http://www.wegottickets.com/searchresults/all'
     unparsed_page = HTTParty.get(url)
     parsed_page = Nokogiri::HTML(unparsed_page)
@@ -42,7 +44,7 @@ class ConcertScraper
     @events
   end
 
-  def parse_data(events)
+  def parse_data(_events)
     @results = JSON.pretty_generate @events
   end
 
@@ -53,7 +55,7 @@ class ConcertScraper
   private
 
   def loading
-    puts "Loading..."
+    puts 'Loading...'
   end
 
   def title(detail)
@@ -65,11 +67,11 @@ class ConcertScraper
   end
 
   def city(detail)
-    detail.css(main_element).text.split("\n")[4].split(" ")[0].tr(':', '').downcase.capitalize
+    detail.css(main_element).text.split("\n")[4].split(' ')[0].tr(':', '').downcase.capitalize
   end
 
   def venue(detail)
-    detail.css(main_element).text.split("\n")[4].split(" ")[1..-1].join(" ")
+    detail.css(main_element).text.split("\n")[4].split(' ')[1..-1].join(' ')
   end
 
   def date(detail)
