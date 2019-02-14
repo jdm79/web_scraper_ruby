@@ -89,4 +89,4 @@ To check the linting:
 $ rubocop
 ```
 
-![alt text](http://url/to/img.png)
+![alt text](https://github.com/jdm79/web_scraper_ruby/blob/master/public/test-results.png)
