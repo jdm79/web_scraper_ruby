@@ -21,9 +21,9 @@ We are only interested in musical events, but don’t worry if your script outpu
 
 ## Stack
 
-Main code: Ruby
-Test Suites: RSpec
-Linting: Rubocop
+* Main code: Ruby
+* Test Suites: RSpec
+* Linting: Rubocop
 
 
 ## How it works
@@ -37,7 +37,7 @@ I noticed from using the inspect tool on Chrome that the href of the detail page
 
 ## Challenges
 
-This was my first foray into web scraping, and the first time I've used Ruby in a few months, so I was relieved to find that it was actually not that hard to at least get going. The Ruby gems make life easier for the developer, that is for sure and I did have a look at the documentation of them before the challenge. 
+This was my first foray into web scraping, and the first time I've used Ruby in a few months, so I was relieved to find that it was actually not that hard to at least get going. The Ruby gems make life easier for the developer, that is for sure and I did have a look at the documentation of them before the challenge. I chose to keep the price as a string, as there's a bit of information there such as the booking fee. However, it should probably be a float as this would work with a payment system.
 
 The big challenge I saw was that you are working on a moving target. The HTML elements are prone to change as well as perhaps the naming conventions of the tags (I saw hyphens, camel-casing and underscores on 'We Got Tickets'). This means that our software will fail whenever this happens. We cannot guess correctly what changes will be made unless we are being warned in advance.
 
@@ -47,6 +47,17 @@ As well as focusing on achieving the goal set, I was thinking of flexibility and
 
 
 ## Extensions
+
+With more time, I would have liked to work out a mock HTTP request for the tests - to reduce dependency on wegottickets. Also, this would hurry up the tests somewhat. There's also a lot of DRY refactoring to be done in the tests, and some on the class.
+
+I would also use a database and store scraped data there. This would allow me to use my software on static and safe data - i.e. no more moving target. Caching data like this means you can get a lot of concert data saved for future synthesis. This does risk missing updates though - if the website data source changes and cannot be scraped immediately - and so this itself is not 100% bullet-proof. However, it does reduced the expensive HTTP requests for each query. If the database is itself updated every 30 minutes (perhaps more frequent than this), the database could be used as the central source of truth rather than making requests to 'We Got Tickets' constantly.
+
+I feel that the way I have designed this program has meant it's not as fast as it could be. My main focus was on getting to all the information. Due to the time constraints and perhaps my weak web scraping skills, I decided that was the way to go.
+
+
+## Conclusion
+
+Doing this exercise has left me much food for thought. Where would I save the JSON to, using a Ruby gem to save files to the computer or to a database. JSON or XML? Also I was thinking how I would design a UI to take user input and then display this data, using pagination or using a pre-determined filter in order to reduce the time taken to return results. When I was using We Got Tickets, the search results for 'all' returned 5,579 events, which could take a while to scrape in one go.
 
 
 ## How to install and use
