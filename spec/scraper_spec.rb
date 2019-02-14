@@ -15,4 +15,16 @@ RSpec.describe ConcertScraper do
     scraper_object = ConcertScraper.new
     expect(scraper_object.events).to be_instance_of Array
   end
+
+  context "when using the scraper methods" do
+    it "should return an array" do
+      scraper_object = ConcertScraper.new
+      expect(scraper_object.url_scraper).to be_instance_of Array
+    end
+    
+    it "should return an array" do
+      scraper_object = ConcertScraper.new
+      expect(scraper_object.detail_scraper).to be_instance_of Array
+    end
+  end
 end
