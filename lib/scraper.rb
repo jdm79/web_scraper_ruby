@@ -38,4 +38,34 @@ class ConcertScraper
     end
     @events
   end
+
+  private
+
+  def loading
+    puts "Loading..."
+  end
+
+  def title(detail)
+    detail.css(main_element).text.split("\n")[1].strip
+  end
+
+  def artist(detail)
+    detail.css(main_element).text.split("\n")[2].strip
+  end
+
+  def city(detail)
+    detail.css(main_element).text.split("\n")[4].split(" ")[0].tr(':', '').downcase.capitalize
+  end
+
+  def venue(detail)
+    detail.css(main_element).text.split("\n")[4].split(" ")[1..-1].join(" ")
+  end
+
+  def date(detail)
+    detail.css(main_element).text.split("\n")[5].strip
+  end
+
+  def price(detail)
+    detail.css(price_element).text.split("\n")[1].strip
+  end
 end
