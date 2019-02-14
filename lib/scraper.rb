@@ -1,6 +1,6 @@
-require "nokogiri"
-require "json"
-require "httparty"
+require 'nokogiri'
+require 'json'
+require 'httparty'
 
 class ConcertScraper
   attr_reader :events
@@ -10,7 +10,7 @@ class ConcertScraper
   end
 
   def url_scraper
-    url = "http://www.wegottickets.com/searchresults/all"
+    url = 'http://www.wegottickets.com/searchresults/all'
     unparsed_page = HTTParty.get(url)
     parsed_page = Nokogiri::HTML(unparsed_page)
   end
@@ -18,5 +18,4 @@ class ConcertScraper
   def detail_scraper
     true
   end
-
 end
