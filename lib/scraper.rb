@@ -3,13 +3,14 @@ require 'json'
 require 'httparty'
 
 class ConcertScraper
-  attr_reader :detail_urls, :events, :main_element, :price_element
+  attr_reader :detail_urls, :events, :main_element, :price_element, :results
 
   def initialize
     @detail_urls = []
     @events = []
     @main_element = 'div.left.full-width-mobile.event-information.event-width'
     @price_element = 'td.half.text-top.text-right'
+    @results = []
   end
 
   def url_scraper
@@ -39,6 +40,14 @@ class ConcertScraper
       @events << detail_page
     end
     @events
+  end
+
+  def parse_data(events)
+    @results = JSON.pretty_generate @events
+  end
+
+  def print_json
+    puts results
   end
 
   private
